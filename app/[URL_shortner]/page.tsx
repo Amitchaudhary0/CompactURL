@@ -9,7 +9,7 @@ const siteName = params;
 
 async function getSite (){
     await mongodbConnect();
-    let shortURL = await urlShortnerSchema.findOne({ shortURL: siteName.URL_shortner })
+    const shortURL = await urlShortnerSchema.findOne({ shortURL: siteName.URL_shortner })
     console.log(shortURL)
     if(!shortURL){
      return notFound();
