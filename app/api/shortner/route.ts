@@ -4,14 +4,14 @@ import urlShortnerSchema from "@/models/urlShortnerSchema";
 export async function POST(req:Request) {
     try {
         await mongodbConnect();
-        const body:any = await req.json();
+        const body: { URL: string; shortURL: string } = await req.json();
         const find = await urlShortnerSchema.findOne({
             shortURL: body.shortURL
         })
         if(find){
             return Response.json({success:false,message:"Duplicate Short URL",URL:find.URL,shortURL: find.shortURL})
         }
-        const result = await urlShortnerSchema.insertMany({
+        await urlShortnerSchema.insertMany({
             URL: body.URL,
             shortURL: body.shortURL
         })
@@ -23,7 +23,7 @@ export async function POST(req:Request) {
     
 }
 
-export async function GET(req:Request) {
+export async function GET() {
     try {
         await mongodbConnect();
         const find = await urlShortnerSchema.find({})

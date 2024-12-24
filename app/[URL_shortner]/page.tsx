@@ -4,8 +4,8 @@ import { notFound, redirect } from 'next/navigation';
 
 import React from 'react'
 
-const shortner = async({ params }: { params: { URL_shortner: string } }) => {
-const siteName = params;
+const shortner = async({ params }: { params: Promise<{ URL_shortner: string }> }) => {
+const siteName:{ URL_shortner: string } = await params;
 
 async function getSite (){
     await mongodbConnect();
