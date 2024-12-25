@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { useState } from 'react'
-
+import { CiMenuFries } from "react-icons/ci";
 
 const Navbar = () => {
   
@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className='z-10 bg-amber-500 h-12 w-[80%] content-center pl-8'>
       <div className='text-2xl font-extrabold text-amber-900'> <Link href='/'>Compact URL</Link> </div>
       </div>
-<button className='sm:hidden block z-10  bg-amber-500 h-12 w-[20%]' onClick={()=>setToggle(!toggle)}>Click Me</button>
+<button className='sm:hidden flex z-10  bg-amber-500 h-12 w-[20%] justify-end pr-2 items-center ' onClick={()=>setToggle(!toggle)}><CiMenuFries /></button>
 
       <div className=' sm:w-full w-auto'>
       <ul className={`z-0 flex sm:justify-end gap-3 sm:pr-8 items-center flex-col absolute justify-evenly right-0 transition-all duration-1000 ease-in-out h-[30vh] bg-amber-400 w-full sm:w-[580px]
