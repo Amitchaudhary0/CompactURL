@@ -1,12 +1,14 @@
 'use client'
 import { ShortnerContext } from "@/Store/store";
+import { set } from "mongoose";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft  } from "react-icons/md";
 
 
 export default function CompactURL() {
   const [toggle, setToggle] = useState(true);
+  const [anim, setAnim] = useState(false);
 
         const [animationClass, setAnimationClass] = useState('opacity-0');
 
@@ -17,6 +19,8 @@ export default function CompactURL() {
         }, 300);
 
       }, []);
+
+      
 
   type ResponseData ={
     success:boolean,
@@ -54,6 +58,7 @@ export default function CompactURL() {
   };
 
   const handleGenerateShortURL = () => {
+    
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -77,8 +82,11 @@ export default function CompactURL() {
         getShortURL(); 
       })
       .catch(error => console.log('error', error));
-      
-   
+      dispatch({ type: "SET_URL", payload: { URL: "https://", shortURL:"" } })
+      setAnim(true);
+      setTimeout(() => {
+        setAnim(false);
+      }, 3000);
   }
 
 
@@ -89,9 +97,11 @@ export default function CompactURL() {
     .then(([response]) => response.json())
     .then(result=>setAllData(result))
   }
+
+
   return (
-    <main className={`flex justify-center items-center h-screen ${animationClass} relative`}>
-      <div className="container w-1/2 bg-amber-300 h-1/2 content-center text-center p-4 rounded-md flex flex-col justify-evenly">
+    <main className={`flex z-10 justify-center items-center h-screen ${animationClass} relative overflow-hidden `}>
+      <div className="container m-2 w-full bg-amber-300 h-1/2 content-center text-center p-4 rounded-md flex flex-col justify-evenly sm:w-1/2">
         <h1 className="text-4xl font-bold">Url Shortner</h1>
         <input className="w-full p-3 border border-black rounded-full"
           type="text"
@@ -117,13 +127,13 @@ export default function CompactURL() {
         </Link>
         
       </div>
-<section className={`absolute ${toggle?"right-[-19%]":"right-0"}  py-4 pl-4 w-1/5 bg-amber-300 text-white h-4/5 rounded-l-3xl transition-all duration-2000`}>
-<button className="absolute top-[50%] left-[-14%] bg-amber-700 hover:bg-amber-600 rounded-full" onClick={()=>setToggle(!toggle)}>{!toggle?<MdKeyboardDoubleArrowRight size={30}/>: <MdKeyboardDoubleArrowLeft size={30}/>}</button>
+<section className={`absolute ${toggle?"right-[-19%]":"right-0 visible"}  py-4 pl-4  sm:w-1/5 bg-amber-300 text-white h-4/5 rounded-l-3xl transition-all  duration-1000 ease-in-out `}>
+<button className={`absolute top-[50%] left-[-14%] bg-amber-700 hover:bg-amber-600 rounded-full ${anim?"animate-bounceLeft":""}`} onClick={()=>setToggle(!toggle)}>{!toggle?<MdKeyboardDoubleArrowRight size={30}/>: <MdKeyboardDoubleArrowLeft size={30}/>}</button>
 <div className="flex flex-col gap-2 h-full overflow-y-auto">
   {allData.find.map((item, index) => {
     return <Link target="_blank" href={item.URL} key={index} className="flex bg-amber-700 rounded-l-full p-2 hover:bg-amber-500 cursor-pointer justify-between items-center">
-      <p className="text-xs">{item.URL}</p>
-      <p className="text-sm font-bold">{(item.shortURL).toUpperCase()}</p>
+      <p className="text-xs hidden sm:block">{item.URL}</p>
+      <p className="text-xs sm:text-sm font-bold">{(item.shortURL).toUpperCase()}</p>
     </Link>
   })}
 </div>
