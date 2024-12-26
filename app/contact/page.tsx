@@ -1,8 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 
-const Contact = () => {
 
+const Contact = () => {
+  
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -23,7 +24,7 @@ const Contact = () => {
       };
     
   return (
-    <div className='py-16 w-1/2 m-auto'>
+    <div className='py-16 w-full sm:w-1/2 p-4 sm:m-auto'>
                 <h2 className="text-3xl font-semibold text-blue-600 pb-6">Contact Us</h2>
         <p className="text-lg text-gray-700 pb-8">
           Have any questions, feedback, or need support? Fill out the form below, and we’ll get back to you as soon as possible.

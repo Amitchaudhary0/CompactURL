@@ -7,6 +7,7 @@ import { LuCopy, LuCopyCheck } from "react-icons/lu";
 import { LiaCopy } from "react-icons/lia";
 import { toast, Bounce } from 'react-toastify';
 
+
 export default function CompactURL() {
   const [toggle, setToggle] = useState(true);
   const [anim, setAnim] = useState(false);
@@ -130,7 +131,7 @@ export default function CompactURL() {
     });
     setTimeout(() => {
       setAnim(false);
-    }, );
+    }, 3000);
   }
 
 

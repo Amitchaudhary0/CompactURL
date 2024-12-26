@@ -1,8 +1,14 @@
 import React from 'react'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: "Compact URL | About Us",
+  description: "Learn more about CompactURL, a fast, simple, and reliable URL shortener that makes sharing long and complex links a breeze.",
+};
 
 const About = () => {
   return (
-    <div className="w-2/3 m-auto py-16">
+    <div className="sm:w-2/3 sm:m-auto p-2 w-full py-16">
       {/* Main Content */}
       <div className="max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold text-blue-600 mb-6">About CompactURL</h2>
