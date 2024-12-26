@@ -15,7 +15,7 @@ export async function POST(req:Request) {
             URL: body.URL,
             shortURL: body.shortURL
         })
-        return Response.json({success:true, error: false, message: "Short URL generated Sucessfully",URL:body.URL,shortURL:body.shortURL});
+        return Response.json({success:true, error: false, message: "Sucessfully generated",URL:body.URL,shortURL:body.shortURL});
     } catch (error) {
         console.log("Error in api shortenUrl route",error)
     }
