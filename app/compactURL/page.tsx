@@ -172,7 +172,7 @@ export default function CompactURL() {
               ><span>Go</span></button>
             </div>
             <Link target="" href={`${data.shortURL}`} className="hover:bg-amber-700 rounded-md bg-amber-500 cursor-pointer transition-all ease-in-out duration-300 hover:text-white text-black">
-              {data.URL ? <div className="w-full h-full p-2 flex flex-col sm:flex-row justify-evenly items-center"> <div className="font-bold text-md">{data.shortURL} </div> <span className="text-xs">{data.URL}</span> {<button onClick={(e) => copyToClipboard({ e, text: (window.location.origin + "/" + data.shortURL) })}><LiaCopy size={25}  /></button>}</div> : <div className="w-full h-full p-2 cursor-not-allowed">Generate URL</div>} 
+              {data.URL ? <div className="w-full h-full p-2 flex flex-col sm:flex-row justify-evenly items-center"> <span>{data.message}</span> <div className="font-bold text-md">{data.shortURL} </div> <span className="text-xs">{data.URL}</span> {<button onClick={(e) => copyToClipboard({ e, text: (window.location.origin + "/" + data.shortURL) })}><LiaCopy size={25}  /></button>}</div> : <div className="w-full h-full p-2 cursor-not-allowed">Generate URL</div>} 
             </Link>
 
           </div>
