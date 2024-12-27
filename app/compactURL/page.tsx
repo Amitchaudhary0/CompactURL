@@ -12,6 +12,7 @@ export default function CompactURL() {
   const [toggle, setToggle] = useState(true);
   const [anim, setAnim] = useState(false);
   const [copied, setCopied] = useState<string>("");
+  const [loading, setLoading] = useState(true);
 
   interface CopyToClipboardProps {
     e: React.MouseEvent<HTMLButtonElement>;
@@ -141,6 +142,7 @@ export default function CompactURL() {
     ])
       .then(([response]) => response.json())
       .then(result => setAllData(result))
+      .then(() => setLoading(false))
   }
 
 
@@ -178,8 +180,9 @@ export default function CompactURL() {
             <button className={`absolute top-[50%] left-[-14%] bg-amber-700 hover:bg-amber-600 rounded-full ${anim ? "animate-bounceLeft" : ""}`} onClick={() => setToggle(!toggle)}>{!toggle ? <MdKeyboardDoubleArrowRight size={30} /> : <MdKeyboardDoubleArrowLeft size={30} />}</button>
             <div className={`flex flex-col gap-2 h-full overflow-y-auto overflow-x-hidden`}>
 
-              {allData.find.map((item, index) => {
-                return <Link target="_blank" href={"/" + item.shortURL} key={index} className={`  flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative ${allData.find.length<0 && "animate-pulse"}` }>
+              {loading ? <div className="m-2"><div className="w-5 m-auto h-5 animate-ping rounded-full bg-amber-700"></div></div> :              
+              allData.find.map((item, index) => {
+                return <Link target="_blank" href={"/" + item.shortURL} key={index} className={`  flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative` }>
                   <p className="text-xs sm:text-sm font-bold">{(item.shortURL).toUpperCase()}</p>
                   <div className=" flex gap-2 absolute sm:right-5 right-1 ">
                     <button onClick={(e) => copyToClipboard({ e, text: window.location.origin + "/" + item.shortURL })}>{copied == item.shortURL ? <LuCopyCheck size={22}/> : <LuCopy size={22}/>}</button>
