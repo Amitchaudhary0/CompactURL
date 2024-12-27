@@ -166,13 +166,13 @@ export default function CompactURL() {
                 value={shortURL}
                 onChange={handleChangeURL}
               />
-              <button className="bg-amber-800 p-2 rounded-full w-9 h-9 absolute right-2 flex justify-center items-center active:scale-110 transition-all text-white active:bg-amber-600 font-bold disabled:cursor-not-allowed"
+              <button className="bg-amber-800 p-2 rounded-full w-9 h-9 absolute right-2 flex justify-center items-center active:scale-110 transition-all text-white active:bg-amber-600 font-bold disabled:cursor-not-allowed disabled:opacity-40"
               disabled={shortURL.length < 1}
                 onClick={handleGenerateShortURL}
               ><span>Go</span></button>
             </div>
             <Link target="" href={`${data.shortURL}`} className="hover:bg-amber-700 rounded-md bg-amber-500 cursor-pointer transition-all ease-in-out duration-300 hover:text-white text-black">
-              {data.URL ? <div className="w-full h-full p-2 flex justify-evenly items-center">{data.message}: <div className="font-bold">{data.shortURL}</div> -- {data.URL} {<button onClick={(e) => copyToClipboard({ e, text: window.location.origin + "/" + shortURL })}><LiaCopy size={25}  /></button>}</div> : <div className="w-full h-full p-2 cursor-not-allowed">Generate URL</div>} 
+              {data.URL ? <div className="w-full h-full p-2 flex justify-evenly items-center"><span >{data.message}: </span> <div className="font-bold text-md">{data.shortURL} </div> <span className="text-xs">{data.URL}</span> {<button onClick={(e) => copyToClipboard({ e, text: (window.location.origin + "/" + data.shortURL) })}><LiaCopy size={25}  /></button>}</div> : <div className="w-full h-full p-2 cursor-not-allowed">Generate URL</div>} 
             </Link>
 
           </div>
