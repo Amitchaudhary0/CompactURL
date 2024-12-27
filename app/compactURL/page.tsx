@@ -149,7 +149,7 @@ export default function CompactURL() {
   return (        
         <main className={`flex z-10 justify-center items-center h-screen ${animationClass} relative overflow-hidden `}>
 
-          <div className="container m-2 w-full bg-amber-300 h-1/2 content-center text-center p-4 rounded-md flex flex-col justify-evenly sm:w-1/2">
+          <div className="container m-2 w-full bg-amber-300 h-1/2 content-center text-center p-4 rounded-md flex flex-col justify-evenly sm:w-1/2 shadow-lg shadow-neutral-400">
             <h1 className="text-4xl font-bold">Url Shortner</h1>
             <input className="w-full p-3 border border-black rounded-full"
               type="text"
@@ -182,7 +182,7 @@ export default function CompactURL() {
 
               {loading ? <div className="m-2"><div className="w-5 m-auto h-5 animate-ping rounded-full bg-amber-700"></div></div> :              
               allData.find.map((item, index) => {
-                return <Link target="_blank" href={"/" + item.shortURL} key={index} className={`  flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative` }>
+                return <Link target="_blank" href={"/" + item.shortURL} key={index} className={`  flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative shadow-md shadow-amber-600` }>
                   <p className="text-xs sm:text-sm font-bold">{(item.shortURL).toUpperCase()}</p>
                   <div className=" flex gap-2 absolute sm:right-5 right-1 ">
                     <button onClick={(e) => copyToClipboard({ e, text: window.location.origin + "/" + item.shortURL })}>{copied == item.shortURL ? <LuCopyCheck size={22}/> : <LuCopy size={22}/>}</button>
