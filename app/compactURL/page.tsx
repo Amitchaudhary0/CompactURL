@@ -178,30 +178,14 @@ export default function CompactURL() {
             <button className={`absolute top-[50%] left-[-14%] bg-amber-700 hover:bg-amber-600 rounded-full ${anim ? "animate-bounceLeft" : ""}`} onClick={() => setToggle(!toggle)}>{!toggle ? <MdKeyboardDoubleArrowRight size={30} /> : <MdKeyboardDoubleArrowLeft size={30} />}</button>
             <div className={`flex flex-col gap-2 h-full overflow-y-auto overflow-x-hidden`}>
 
-              {allData? allData.find.map((item, index) => {
-                return <Link target="_blank" href={"/" + item.shortURL} key={index} className="flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative">
+              {allData.find.map((item, index) => {
+                return <Link target="_blank" href={"/" + item.shortURL} key={index} className={`  flex bg-amber-700 rounded-l-full p-2 px-4 hover:bg-amber-500 cursor-pointer justify-between items-center gap-3 transition-all ease-in-out duration-300 relative ${allData.find.length<0 && "animate-pulse"}` }>
                   <p className="text-xs sm:text-sm font-bold">{(item.shortURL).toUpperCase()}</p>
                   <div className=" flex gap-2 absolute sm:right-5 right-1 ">
                     <button onClick={(e) => copyToClipboard({ e, text: window.location.origin + "/" + item.shortURL })}>{copied == item.shortURL ? <LuCopyCheck size={22}/> : <LuCopy size={22}/>}</button>
-                    {/* <button>copy url</button> */}
                   </div>
-                  {/* <p className="text-xs hidden sm:block">{item.URL}</p> */}
                 </Link>
-              }):<div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-              <div className="animate-pulse flex space-x-4">
-                <div className="rounded-full bg-slate-700 h-10 w-10"></div>
-                <div className="flex-1 space-y-6 py-1">
-                  <div className="h-2 bg-slate-700 rounded"></div>
-                  <div className="space-y-3">
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="h-2 bg-slate-700 rounded col-span-2"></div>
-                      <div className="h-2 bg-slate-700 rounded col-span-1"></div>
-                    </div>
-                    <div className="h-2 bg-slate-700 rounded"></div>
-                  </div>
-                </div>
-              </div>
-            </div>}
+              })}
             </div>
           </section>
         </main>
